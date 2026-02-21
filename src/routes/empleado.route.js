@@ -4,6 +4,6 @@ import uploadCsv from "../middlewares/uploadCsv.middleware.js";
 
 const router = Router()
 
-router.use("/importar", uploadCsv.single("archivo"), cargarEmpleados)
+router.post("/importar", uploadCsv.single("archivo"), cargarEmpleados)
 
 export default router
