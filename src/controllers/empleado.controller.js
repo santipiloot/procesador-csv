@@ -2,5 +2,5 @@ import { cargarEmpleados as cargarEmpleadosService} from "../services/empleado.s
 
 export const cargarEmpleados = (req, res) => {
     const resultado = cargarEmpleadosService(req.file.buffer)
-    return res.json({ success: true })
+    return res.json({ success: true, data: resultado})
 }
