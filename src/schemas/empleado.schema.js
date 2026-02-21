@@ -4,10 +4,10 @@ const empleadoSchema = z.object({
     nombre: z.string().normalize().trim().min(3), 
     apellido: z.string().normalize().trim().min(3),
     email: z.email().toLowerCase().trim(), 
-    telefono: z.coerce.number().int().positive().min(10), 
+    telefono: z.string().regex(/^\d{10,15}$/), 
     cargo: z.string().normalize().trim().min(2),
     departamento: z.string().normalize().trim().min(2),
     salario: z.coerce.number().positive()
 })
 
-export default empleadoSchema
+export default empleadoSchema   
