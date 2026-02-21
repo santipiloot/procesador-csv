@@ -41,7 +41,7 @@ export const cargarEmpleados = (buffer) => {
         exitosos: exitosos.length,
         erroneos: erroneos.length,
         errores: erroneos.slice(0, maxErrores),
-        quedanErrores: erroneos.length > maxErrores 
+        hayMasErrores: erroneos.length > maxErrores 
     }
 
     return resumen
