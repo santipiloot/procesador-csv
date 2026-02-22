@@ -1,6 +1,6 @@
 import { parse } from "csv-parse/sync"
 import empleadoSchema from "../schemas/empleado.schema.js"
-import { chunkArray, normalizarTextos, chunkArray } from "../utils/empleado.util.js"
+import { chunkArray, normalizarTextos } from "../utils/empleado.util.js"
 import { cargarEmpleados as cargarEmpleadosModel, obtenerEmails } from "../models/empleado.model.js"
 
 export const cargarEmpleados = async (buffer) => {
