@@ -13,9 +13,6 @@ export const cargarEmpleados = async (req, res) => {
     return res.status(200).json({ success: true, data: resultado})
 } catch(error) {
     console.log("Error en cargarEmpleados:", error)
-    return res.status(500).json({
-        success: false,
-        message: "Error interno del servidor"
-    })
+    next(error)
 }
 }
