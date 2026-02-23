@@ -10,12 +10,15 @@ export const normalizarTextos = (input) => {
 }
 
 export const chunkArray = (array, tamanio) => {
+
+    if (tamanio <= 0) throw new Error("El tamaño del chunk no puede ser 0 o negativo")
+
     const arrayPartido = []
 
     for (let i = 0; i < array.length; i += tamanio) {
         arrayPartido.push(array.slice(i, i + tamanio))
     }
-    
+
     return arrayPartido;
 }
 
