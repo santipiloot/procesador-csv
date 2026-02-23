@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node index.js",
-    "dev": "node --watch --env-file=.env index.js"
+    "start": "node index.js",
+    "dev": "node --watch --env-file=.env index.js",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
