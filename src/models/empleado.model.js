@@ -1,5 +1,7 @@
 import pool from "../config/database.js"
 
+// Al usar transacciones debemos suar la misma conexion siempre 
+// por eso se recibe cliente como parametro y se usa para las querys
 export const cargarEmpleados = async (cliente, query, values) => {
     const res = await cliente.query(query, values)
     return res

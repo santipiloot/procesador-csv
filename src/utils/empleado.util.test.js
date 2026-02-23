@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { chunkArray, normalizarTextos } from "./empleado.util.js"
 
+// Tests sobre utils
 describe("Emplados Utils", () => {
     describe("Funcion chunkArray", () => {
 

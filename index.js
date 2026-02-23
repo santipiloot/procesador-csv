@@ -1,6 +1,7 @@
 import app from "./src/app.js"
 import pool from "./src/config/database.js"
 
+// Funcion para levantar el servidor solo si la DB se pudo conectar
 const iniciarServidor = async () => {
     try {
         await pool.query("SELECT NOW()")
@@ -17,5 +18,14 @@ const iniciarServidor = async () => {
         process.exit(1)
     }
 }
+
+// Funcion para cerrar las conexiones antes de que la app se cierre y evitar conexiones colgadas
+process.on('SIGINT', async () => {
+    console.log("Conexiones de la DB cerradas");
+    await pool.end();
+    setTimeout(() => {
+        process.exit(0);
+    }, 100);
+});
 
 iniciarServidor()

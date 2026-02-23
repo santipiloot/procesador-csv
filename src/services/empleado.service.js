@@ -5,14 +5,16 @@ import { cargarEmpleados as cargarEmpleadosModel, obtenerEmails, conexionUnica }
 
 export const cargarEmpleados = async (buffer) => {
 
+    // Pedimos la conexion unica al pool para empezar la transaccion
     const cliente = await conexionUnica();
 
     try {
         await cliente.query('BEGIN');
 
-        const maxErrores = 20;
+        const maxErrores = 20; // Para devolver en el Json un maximo de 20 errores en el caso de que haya muchos
         const bufferForm = buffer.toString("utf-8")
 
+        // Transforma en objetos cada fila
         const empleados = parse(bufferForm, {
             columns: true,
             skip_empty_lines: true,
@@ -23,6 +25,9 @@ export const cargarEmpleados = async (buffer) => {
         const empleadosDuplicadosCsv = []
         const emailSet = new Set()
 
+        // Bucle que recorre a cada empleado, lo valida con el schema Zod y divide en exitosos o erroneos
+        // A los que pasan las validaciones los vuelve a filtrar 
+        // para buscar que no se repita en el Csv que estamos procesando en este momento
         for (const [index, empleado] of empleados.entries()) {
             const resultado = empleadoSchema.safeParse(empleado)
             if (resultado.success) {
@@ -49,6 +54,7 @@ export const cargarEmpleados = async (buffer) => {
             }
         }
 
+        // Filtramos los email de los exitosos para buscar que no esten cargados ya en la base de datos
         const emails = exitosos.map(e => e.email)
         let existentesSet = new Set()
 
@@ -60,6 +66,7 @@ export const cargarEmpleados = async (buffer) => {
         const empleadosDuplicadosDb = []
         const empleadosFiltrados = []
 
+        // Filtra el email de los exitosos y los compara si ya estan cargados en la db
         for (const empleado of exitosos) {
             if (existentesSet.has(empleado.email)) {
                 empleadosDuplicadosDb.push(empleado)
@@ -68,11 +75,13 @@ export const cargarEmpleados = async (buffer) => {
             }
         }
 
-
+        // Para evitar enviar 1000 empleados a la vez y exigir a la DB, hacemos bulk insert diviendo en el array de empleados 
+        // Hacemos batching y separamos el array en lotes de hasta 500 empleados para ingresar a la db
         const arrayPartido = chunkArray(empleadosFiltrados, 500)
 
         let totalInsertados = 0;
 
+        // Armamos la query y los valores de forma dinamica
         for (const parte of arrayPartido) {
             const values = []
             const placeholders = []
@@ -102,6 +111,7 @@ export const cargarEmpleados = async (buffer) => {
 
         }
 
+        // Respuesta a la peticion, incluye mucha informacion para saber donde se fallo, cuantos y cuales duplicados habia, etc.
         const resumen = {
             procesados: empleados.length,
             exitosos: empleadosFiltrados.length,
@@ -118,6 +128,7 @@ export const cargarEmpleados = async (buffer) => {
         console.error("Error en la carga de de datos:", error.message)
         throw error;
     } finally {
+        // Dejamos que la conexion vuelva al pool
         if (cliente) cliente.release()
     }
 }

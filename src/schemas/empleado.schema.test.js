@@ -1,6 +1,7 @@
 import empleadoSchema from "./empleado.schema.js"
 import { describe, it, expect } from "vitest"
 
+// Tests sobre las validaciones del schema
 describe("Validacion de datos del Empleado (con schema Zod)", () => {
     const empleadoValido = {
         nombre: "Santino",
