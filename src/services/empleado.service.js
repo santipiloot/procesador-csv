@@ -1,7 +1,10 @@
 import { parse } from "csv-parse/sync"
 import empleadoSchema from "../schemas/empleado.schema.js"
 import { chunkArray, normalizarTextos } from "../utils/empleado.util.js"
-import { cargarEmpleados as cargarEmpleadosModel, obtenerEmails, conexionUnica } from "../models/empleado.model.js"
+import { cargarEmpleados as cargarEmpleadosModel, 
+    obtenerEmails, 
+    conexionUnica,
+    obtenerTodosLosEmpleados as obtenerTodosModel } from "../models/empleado.model.js"
 
 export const cargarEmpleados = async (buffer) => {
 
@@ -131,4 +134,8 @@ export const cargarEmpleados = async (buffer) => {
         // Dejamos que la conexion vuelva al pool
         if (cliente) cliente.release()
     }
+}
+
+export const obtenerEmpleados = async () => {
+    return await obtenerTodosModel()
 }

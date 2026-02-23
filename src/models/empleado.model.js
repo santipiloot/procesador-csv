@@ -13,3 +13,9 @@ export const obtenerEmails = async (cliente, emails) => {
 }
 
 export const conexionUnica = () => { return pool.connect() }
+
+export const obtenerTodosLosEmpleados = async () => {
+    // Usamos el poolporque es una lectura sin transacciones
+    const { rows } = await pool.query("SELECT * FROM empleados ORDER BY id DESC")
+    return rows
+}

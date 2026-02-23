@@ -1,4 +1,5 @@
-import { cargarEmpleados as cargarEmpleadosService} from "../services/empleado.service.js"
+import { cargarEmpleados as cargarEmpleadosService, 
+    obtenerEmpleados as obtenerEmpleadosService} from "../services/empleado.service.js"
 
 export const cargarEmpleados = async (req, res, next) => {
     try {
@@ -17,4 +18,13 @@ export const cargarEmpleados = async (req, res, next) => {
     console.log("Error en cargarEmpleados:", error)
     next(error) // Envia todos los errores al middleware para los errores
 }
+}
+
+export const obtenerEmpleados = async (req, res, next) => {
+    try {
+        const empleados = await obtenerEmpleadosService()
+        res.status(200).json({ success: true, data: empleados })
+    } catch (error) {
+        next(error)
+    }
 }
