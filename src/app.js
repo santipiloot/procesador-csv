@@ -1,10 +1,12 @@
 import express from "express"
 import empleadoRouter from "./routes/empleado.route.js"
 import errorHandler from "./middlewares/errorHandler.middleware.js"
+import cors from "cors"
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.use("/empleados", empleadoRouter)
 

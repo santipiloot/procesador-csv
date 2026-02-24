@@ -1,10 +1,12 @@
 import { parse } from "csv-parse/sync"
 import empleadoSchema from "../schemas/empleado.schema.js"
 import { chunkArray, normalizarTextos } from "../utils/empleado.util.js"
-import { cargarEmpleados as cargarEmpleadosModel, 
-    obtenerEmails, 
+import {
+    cargarEmpleados as cargarEmpleadosModel,
+    obtenerEmails,
     conexionUnica,
-    obtenerTodosLosEmpleados as obtenerTodosModel } from "../models/empleado.model.js"
+    obtenerTodosLosEmpleados as obtenerTodosModel
+} from "../models/empleado.model.js"
 
 export const cargarEmpleados = async (buffer) => {
 
@@ -117,11 +119,19 @@ export const cargarEmpleados = async (buffer) => {
         // Respuesta a la peticion, incluye mucha informacion para saber donde se fallo, cuantos y cuales duplicados habia, etc.
         const resumen = {
             procesados: empleados.length,
-            exitosos: empleadosFiltrados.length,
-            totalInsertados,
-            empleadosDuplicadosCsv: { total: empleadosDuplicadosCsv.length, data: empleadosDuplicadosCsv },
-            empleadosDuplicadosDb: { total: empleadosDuplicadosDb.length, data: empleadosDuplicadosDb },
-            erroneos: { total: erroneos.length, data: erroneos.slice(0, maxErrores) },
+            insertados: totalInsertados,
+            duplicadosCsv: {
+                total: empleadosDuplicadosCsv.length,
+                data: empleadosDuplicadosCsv
+            },
+            duplicadosDb: {
+                total: empleadosDuplicadosDb.length,
+                data: empleadosDuplicadosDb
+            },
+            erroneos: {
+                total: erroneos.length,
+                data: erroneos.slice(0, maxErrores)
+            },
             hayMasErrores: erroneos.length > maxErrores
         }
         await cliente.query('COMMIT');
