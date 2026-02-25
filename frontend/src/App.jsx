@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, Upload, Database, FileText, CheckCircle2, AlertCircle, Copy } from 'lucide-react';
+import { RefreshCw, Upload, Database, FileText, CheckCircle2, AlertCircle, Copy, Download } from 'lucide-react';
 import TarjetaKPI from './components/TarjetaKPI';
 import TablaEmpleado from './components/TablaEmpleado';
 import PanelResumen from './components/PanelResumen';
@@ -26,7 +26,7 @@ const App = () => {
       if (result.success) {
         setEmpleados(result.data.slice(0, 100));  // Mostramos solo 100 para no exigir cargar tantos empleados
         if (esRecargaManual) {
-          alert("Datos actualizados con exito"); 
+          alert("Datos actualizados con exito");
         }
       }
     } catch (error) {
@@ -62,7 +62,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-slate-900">
-      
+
       {/* HEADER: Navegacion y acciones principales */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
         <div className="max-w-[1600px] mx-auto px-6 h-18 flex items-center justify-between py-4">
@@ -78,10 +78,19 @@ const App = () => {
 
           {/* BOTONES DE ACCION */}
           <div className="flex items-center gap-4">
-            <button onClick={() => fetchEmpleados(true)} className="cursor-pointer p-2 text-slate-400 hover:text-sky-600 transition-colors active:scale-95">
+            {/* Boton de recarga */}
+            <button onClick={() => fetchEmpleados(true)} className="cursor-pointer p-2 text-slate-400 hover:text-sky-600 transition-colors active:scale-95" title="Recargar tabla de empleados">
               <RefreshCw size={20} />
             </button>
-            <label className="cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all shadow-md flex items-center gap-2 active:scale-95">
+
+            {/* Boton de descarga */}
+            <a
+              href="/archivo-prueba.csv"download="archivo-prueba.csv" className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95 border border-slate-200" title="Descargar archivo de ejemplo"
+            >
+              <Download size={18} />
+              <span className="hidden md:inline">Descargar Ejemplo</span>
+            </a>
+            <label className="cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all shadow-md flex items-center gap-2 active:scale-95" title="Subir archivo">
               {loading ? <RefreshCw className="animate-spin" size={18} /> : <Upload size={18} />}
               {loading ? 'Procesando...' : 'Cargar Archivo CSV'}
               <input type="file" className="hidden" accept=".csv" onChange={handleImport} disabled={loading} />
@@ -90,17 +99,17 @@ const App = () => {
         </div>
       </header>
 
-      
+
 
       <main className="max-w-[1600px] mx-auto px-6 py-8">
 
-      {/* Banner de error de conexion */}
+        {/* Banner de error de conexion */}
         {errorConexion && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700">
-          <AlertCircle size={20} />
-          <p className="text-sm font-medium">No se pudo conectar con el servidor. Verifica tu API.</p>
-        </div>
-      )}
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700">
+            <AlertCircle size={20} />
+            <p className="text-sm font-medium">No se pudo conectar con el servidor. Verifica tu API.</p>
+          </div>
+        )}
         {/* INDICADORES KPI */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
           <TarjetaKPI titulo="Filas Procesadas" valor={resumen?.procesados || 0} icono={<FileText />} color="blue" />
