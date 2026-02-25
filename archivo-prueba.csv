@@ -74,18 +74,18 @@ Teresa,Exposito,teresa.e@empresa.com,1122334526,Project Director,Administracion,
 Borja,Gallardo,borja.g@empresa.com,1122334527,Cloud Specialist,Tecnologia,3350.00
 Rocio,Bernal,rocio.b@empresa.com,1122334528,Brand Manager,Marketing,2800.00
 Alvaro,Marquez,alvaro.m@empresa.com,1122334529,Infra Architect,Tecnologia,3950.00
-Dolores,Ortega,dolores.o@empresa.com,1122334530,Accountant,Finanzas,2700.00
+Dolores,Ortega,dolores.o@empresa.com,1122334530,12,Finanzas,2700.00
 Enrique,Hurtado,enrique.h@empresa.com,1122334531,Django Developer,Tecnologia,2450.00
 Lourdes,Santana,lourdes.s@empresa.com,1122334532,Secretary,Administracion,1500.00
 Pascual,Gimenez,pascual.g@empresa.com,1122334533,Analyst,Producto,2300.00
-Sonia,Blazquez,sonia.b@empresa.com,1122334534,Tech Support,IT,1750.00
+Sonia,Blazquez,sonia.b@empresa.com,112233,Tech Support,IT,-1750.00
 Fidel,Manzano,fidel.m@empresa.com,1122334535,Golang Dev,Tecnologia,3300.00
 Noelia,Cruz,noelia.c@empresa.com,1122334536,UX Writer,Producto,2150.00
 Arturo,Estévez,arturo.e@empresa.com,1122334537,Network Admin,IT,2700.00
 Daria,Gallego,daria.g@empresa.com,1122334538,PR Specialist,Marketing,2200.00
 Iker,Bermejo,iker.b@empresa.com,1122334539,ML Engineer,Tecnologia,3550.00
 Monica,Asensio,monica.a@empresa.com,1122334540,HR Assistant,RRHH,1800.00
-Aitor,Sola,aitor.s@empresa.com,1122334541,Junior Dev,Tecnologia,1900.00
+Ai,Sola,aitor.s@empresa,1122334541,Junior Dev,Tecnologia,1900.00
 Elisa,Crespo,elisa.c@empresa.com,1122334542,Finance Manager,Finanzas,3400.00
 Julian,Campos,julian.c@empresa.com,1122334543,Ruby Developer,Tecnologia,2600.00
 Olga,Aguilar,olga.a@empresa.com,1122334544,SEO Analyst,Marketing,2100.00
@@ -98,4 +98,4 @@ Fermin,Pino,fermin.p@empresa.com,1122334550,Hardware Eng,Tecnologia,3300.00
 Marisa,Luz,marisa.l@empresa.com,1122334551,Data Entry,Administracion,1300.00
 Admin,Mal,email-invalido,999999,Falla Formato,IT,500.00
 Juan,Perez,juan.perez@empresa.com,1122334455,Duplicado Interno,Tecnologia,2500.00
-Santino,Pilot,,123,,IT,100.00
+Santino,Pilot,santino.pilot@gmail.com,1234567890,developer,IT,100.00

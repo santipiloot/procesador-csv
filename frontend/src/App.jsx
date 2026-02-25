@@ -17,12 +17,19 @@ const App = () => {
   const IMPORT_URL = import.meta.env.VITE_IMPORT_URL;
 
   // Obtiene la lista de empleados desde el backend
-  // esRecargaManual - Si es true, muestra una alerta al finalizar
+  // esRecargaManual: Si es true, muestra una alerta al finalizar
   const fetchEmpleados = async (esRecargaManual = false) => {
     setErrorConexion(false) // Reseteamos el estado de error antes de intentar
+    
     try {
       const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
       const result = await response.json();
+      
       if (result.success) {
         setEmpleados(result.data.slice(0, 100));  // Mostramos solo 100 para no exigir cargar tantos empleados
         if (esRecargaManual) {
@@ -31,6 +38,7 @@ const App = () => {
       }
     } catch (error) {
       console.error("Error al obtener empleados:", error);
+
       setErrorConexion(true); // Activa el banner de error visual
     }
   };
@@ -48,9 +56,12 @@ const App = () => {
     try {
       const response = await fetch(IMPORT_URL, { method: 'POST', body: formData });
       const result = await response.json();
-      if (result.success) {
+      if (response.ok && result.success) {
         setResumen(result.data); // Guardamos las estadísticas del procesamiento
         fetchEmpleados(); // Refrescamos la tabla para mostrar los nuevos registros
+      } else {
+        // Si el servidor tira 400, 429 o 500, mostramos el mensaje que viene del backend
+        alert(`Error: ${result.error || "No se pudo procesar el archivo"}`);
       }
     } catch (error) {
       alert("Error en la conexión con el servidor");
@@ -85,7 +96,7 @@ const App = () => {
 
             {/* Boton de descarga */}
             <a
-              href="/archivo-prueba.csv"download="archivo-prueba.csv" className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95 border border-slate-200" title="Descargar archivo de ejemplo"
+              href="/archivo-prueba.csv" download="archivo-prueba.csv" className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95 border border-slate-200" title="Descargar archivo de ejemplo"
             >
               <Download size={18} />
               <span className="hidden md:inline">Descargar Ejemplo</span>

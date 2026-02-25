@@ -20,11 +20,25 @@ export const cargarEmpleados = async (buffer) => {
         const bufferForm = buffer.toString("utf-8")
 
 
-        // Transforma en objetos cada fila
-        const empleados = parse(bufferForm, {
-            columns: true,
-            skip_empty_lines: true,
-        })
+        // Intentamos el parseo
+        let empleados;
+
+        try {
+            empleados = parse(bufferForm, {
+                columns: true,
+                skip_empty_lines: true,
+            });
+        } catch (parseError) {
+            const error = new Error("El formato del archivo CSV es inválido o está corrupto.");
+            error.status = 400; 
+            throw error;
+        }
+
+        if (empleados.length === 0) {
+            const errorVacio = new Error("El archivo CSV está vacío.");
+            errorVacio.status = 400;
+            throw errorVacio;
+        }
 
         const exitosos = []
         const erroneos = []

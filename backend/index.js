@@ -7,7 +7,7 @@ const iniciarServidor = async () => {
         await pool.query("SELECT NOW()")
         console.log("La conexion a la DB fue exitosa")
 
-        const port = 3000
+        const port = process.env.PORT || 3000
 
         app.listen(port, () => {
             console.log(`La app esta funcionando en el puerto ${port}`)
@@ -20,12 +20,16 @@ const iniciarServidor = async () => {
 }
 
 // Funcion para cerrar las conexiones antes de que la app se cierre y evitar conexiones colgadas
-process.on('SIGINT', async () => {
+const shutdown = async () => {
     console.log("Conexiones de la DB cerradas");
-    await pool.end();
+    await pool.end()
     setTimeout(() => {
         process.exit(0);
     }, 100);
-});
+}
+
+process.on('SIGINT', shutdown)
+process.on('SIGTERM', shutdown)
+
 
 iniciarServidor()
