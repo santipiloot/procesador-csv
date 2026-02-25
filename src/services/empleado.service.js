@@ -19,6 +19,7 @@ export const cargarEmpleados = async (buffer) => {
         const maxErrores = 20; // Para devolver en el Json un maximo de 20 errores en el caso de que haya muchos
         const bufferForm = buffer.toString("utf-8")
 
+
         // Transforma en objetos cada fila
         const empleados = parse(bufferForm, {
             columns: true,
@@ -42,7 +43,7 @@ export const cargarEmpleados = async (buffer) => {
                 })
 
                 if (emailSet.has(empleadoNormalizado.email)) {
-                    empleadosDuplicadosCsv.push({ fila: index + 2, empleadoNormalizado })
+                    empleadosDuplicadosCsv.push({ fila: index + 2, empleado: empleadoNormalizado })
                 } else {
                     emailSet.add(empleadoNormalizado.email)
                     exitosos.push(empleadoNormalizado)
