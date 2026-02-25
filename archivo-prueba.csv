@@ -1,0 +1,101 @@
+nombre,apellido,email,telefono,cargo,departamento,salario
+Juan,Perez,juan.perez@empresa.com,1122334455,Desarrollador Backend,Tecnologia,2500.00
+Maria,Garcia,maria.garcia@empresa.com,1122334456,Analista QA,Tecnologia,2100.50
+Carlos,Rodriguez,carlos.rod@empresa.com,1122334457,Gerente de Proyectos,Administracion,3500.00
+Ana,Martinez,ana.mtz@empresa.com,1122334458,Disenador UX,Producto,2300.00
+Luis,Sanchez,luis.sanchez@empresa.com,1122334459,Desarrollador Frontend,Tecnologia,2450.00
+Laura,Lopez,laura.lopez@empresa.com,1122334460,Recursos Humanos,RRHH,1900.00
+Pedro,Gomez,pedro.gomez@empresa.com,1122334461,Contador,Finanzas,2800.00
+Sofia,Diaz,sofia.diaz@empresa.com,1122334462,Marketing Lead,Marketing,2600.00
+Diego,Torres,diego.torres@empresa.com,1122334463,DevOps Engineer,Tecnologia,3200.00
+Elena,Ruiz,elena.ruiz@empresa.com,1122334464,Asistente Ejecutivo,Administracion,1500.00
+Javier,Morales,javier.m@empresa.com,1122334465,Data Scientist,Tecnologia,3100.00
+Marta,Vazquez,marta.v@empresa.com,1122334466,Analista de Datos,Producto,2400.00
+Ricardo,Jimenez,ricardo.j@empresa.com,1122334467,Soporte Tecnico,IT,1700.00
+Lucia,Castro,lucia.c@empresa.com,1122334468,Comercial,Ventas,2000.00
+Fernando,Ortiz,fer.ortiz@empresa.com,1122334469,QA Engineer,Tecnologia,2200.00
+Gabriela,Silva,gabi.silva@empresa.com,1122334470,Product Manager,Producto,3300.00
+Hugo,Ramos,hugo.ramos@empresa.com,1122334471,Ciberseguridad,Tecnologia,3400.00
+Isabel,Flores,isabel.f@empresa.com,1122334472,SEO Specialist,Marketing,2100.00
+Marcos,Blanco,marcos.b@empresa.com,1122334473,Data Architect,Tecnologia,3800.00
+Paula,Mendez,paula.m@empresa.com,1122334474,UX Researcher,Producto,2350.00
+Roberto,Castillo,roberto.c@empresa.com,1122334475,Mobile Dev,Tecnologia,2700.00
+Jimena,Suarez,jimena.s@empresa.com,1122334476,Social Media,Marketing,1800.00
+Andres,Delgado,andres.d@empresa.com,1122334477,Backend Node,Tecnologia,2900.00
+Beatriz,Luna,beatriz.l@empresa.com,1122334478,Legal Counsel,Legales,3000.00
+Ignacio,Peña,nacho.p@empresa.com,1122334479,SRE Engineer,Tecnologia,3500.00
+Carmen,Herrera,carmen.h@empresa.com,1122334480,Admin,Administracion,1600.00
+Tomas,Cortes,tomas.c@empresa.com,1122334481,Cloud Architect,Tecnologia,4000.00
+Valeria,Marin,valeria.m@empresa.com,1122334482,Copywriter,Marketing,1950.00
+Felipe,Guerrero,felipe.g@empresa.com,1122334483,Accountant,Finanzas,2850.00
+Claudia,Medina,claudia.m@empresa.com,1122334484,Scrum Master,Tecnologia,3100.00
+Sebastian,Cano,sebas.c@empresa.com,1122334485,Fullstack,Tecnologia,3000.00
+Rosa,Garrido,rosa.g@empresa.com,1122334486,Sales Manager,Ventas,3200.00
+Mateo,Cabrera,mateo.c@empresa.com,1122334487,Machine Learning,Tecnologia,3600.00
+Sara,Calvo,sara.c@empresa.com,1122334488,Designer,Producto,2250.00
+Daniel,Lara,daniel.l@empresa.com,1122334489,System Admin,IT,2400.00
+Ines,Arias,ines.a@empresa.com,1122334490,Recruiter,RRHH,2000.00
+Adrian,Figueroa,adrian.f@empresa.com,1122334491,Security Analyst,Tecnologia,3300.00
+Monica,Navarro,monica.n@empresa.com,1122334492,Project Admin,Administracion,2100.00
+Raul,Cordero,raul.c@empresa.com,1122334493,PHP Dev,Tecnologia,2200.00
+Julia,Reyes,julia.r@empresa.com,1122334494,PR Manager,Marketing,2400.00
+Victor,Pascual,victor.p@empresa.com,1122334495,DBA,Tecnologia,3100.00
+Alicia,Molina,alicia.m@empresa.com,1122334496,Content Creator,Marketing,1850.00
+Oscar,Gil,oscar.g@empresa.com,1122334497,Java Dev,Tecnologia,2800.00
+Nuria,Fuentes,nuria.f@empresa.com,1122334498,Asistente,Administracion,1550.00
+Sonia,Serrano,sonia.s@empresa.com,1122334499,Business Analyst,Producto,2900.00
+Ruben,Hidalgo,ruben.h@empresa.com,1122334500,Technical Writer,Tecnologia,2100.00
+Cristina,Sanz,cristina.s@empresa.com,1122334501,Customer Success,Ventas,2300.00
+Emilio,Esteban,emilio.e@empresa.com,1122334502,SysOps,Tecnologia,2600.00
+Silvia,Bravo,silvia.b@empresa.com,1122334503,Analista Financiero,Finanzas,2750.00
+Hugo,Rueda,hugo.r@empresa.com,1122334504,Mobile Lead,Tecnologia,3900.00
+Irene,Vega,irene.v@empresa.com,1122334505,QA Automation,Tecnologia,2500.00
+Manuel,Duran,manuel.d@empresa.com,1122334506,Director IT,IT,4500.00
+Angela,Leon,angela.l@empresa.com,1122334507,Asociado,Administracion,1650.00
+Ramon,Ferrer,ramon.f@empresa.com,1122334508,Game Dev,Tecnologia,2950.00
+Natalia,Crespo,natalia.c@empresa.com,1122334509,Lead Designer,Producto,3100.00
+Joaquin,Moya,joaquin.m@empresa.com,1122334510,Support Lead,IT,2400.00
+Leticia,Soler,leticia.s@empresa.com,1122334511,Event Planner,Marketing,2050.00
+Fabiola,Ibañez,fabiola.i@empresa.com,1122334512,Rust Dev,Tecnologia,3200.00
+Esteban,Lorenzo,esteban.l@empresa.com,1122334513,Consultor,Administracion,2800.00
+Lorena,Parra,lorena.p@empresa.com,1122334514,HR Biz Partner,RRHH,2700.00
+Cesar,Soto,cesar.s@empresa.com,1122334515,Cyber Security,Tecnologia,3450.00
+Belen,Roman,belen.r@empresa.com,1122334516,Marketing Assistant,Marketing,1750.00
+Mario,Vicente,mario.v@empresa.com,1122334517,Vue Developer,Tecnologia,2350.00
+Clara,Vila,clara.v@empresa.com,1122334518,Product Designer,Producto,2600.00
+Gorka,Saez,gorka.s@empresa.com,1122334519,Data Analyst,Tecnologia,2550.00
+Vanessa,Velazquez,vanessa.v@empresa.com,1122334520,Sales Rep,Ventas,1900.00
+Alberto,Guerra,alberto.g@empresa.com,1122334521,Backend Senior,Tecnologia,3700.00
+Miriam,Alonso,miriam.a@empresa.com,1122334522,UI Designer,Producto,2200.00
+Samuel,Izquierdo,samuel.i@empresa.com,1122334523,Blockchain Dev,Tecnologia,4100.00
+Andrea,Rivas,andrea.r@empresa.com,1122334524,Payroll Clerk,RRHH,1850.00
+Ismael,Cano,ismael.c@empresa.com,1122334525,Help Desk,IT,1600.00
+Teresa,Exposito,teresa.e@empresa.com,1122334526,Project Director,Administracion,4200.00
+Borja,Gallardo,borja.g@empresa.com,1122334527,Cloud Specialist,Tecnologia,3350.00
+Rocio,Bernal,rocio.b@empresa.com,1122334528,Brand Manager,Marketing,2800.00
+Alvaro,Marquez,alvaro.m@empresa.com,1122334529,Infra Architect,Tecnologia,3950.00
+Dolores,Ortega,dolores.o@empresa.com,1122334530,Accountant,Finanzas,2700.00
+Enrique,Hurtado,enrique.h@empresa.com,1122334531,Django Developer,Tecnologia,2450.00
+Lourdes,Santana,lourdes.s@empresa.com,1122334532,Secretary,Administracion,1500.00
+Pascual,Gimenez,pascual.g@empresa.com,1122334533,Analyst,Producto,2300.00
+Sonia,Blazquez,sonia.b@empresa.com,1122334534,Tech Support,IT,1750.00
+Fidel,Manzano,fidel.m@empresa.com,1122334535,Golang Dev,Tecnologia,3300.00
+Noelia,Cruz,noelia.c@empresa.com,1122334536,UX Writer,Producto,2150.00
+Arturo,Estévez,arturo.e@empresa.com,1122334537,Network Admin,IT,2700.00
+Daria,Gallego,daria.g@empresa.com,1122334538,PR Specialist,Marketing,2200.00
+Iker,Bermejo,iker.b@empresa.com,1122334539,ML Engineer,Tecnologia,3550.00
+Monica,Asensio,monica.a@empresa.com,1122334540,HR Assistant,RRHH,1800.00
+Aitor,Sola,aitor.s@empresa.com,1122334541,Junior Dev,Tecnologia,1900.00
+Elisa,Crespo,elisa.c@empresa.com,1122334542,Finance Manager,Finanzas,3400.00
+Julian,Campos,julian.c@empresa.com,1122334543,Ruby Developer,Tecnologia,2600.00
+Olga,Aguilar,olga.a@empresa.com,1122334544,SEO Analyst,Marketing,2100.00
+Xavi,Benitez,xavi.b@empresa.com,1122334545,Scrum Master,Tecnologia,3000.00
+Yolanda,Hervas,yolanda.h@empresa.com,1122334546,Receptionist,Administracion,1450.00
+Zoe,Ferrero,zoe.f@empresa.com,1122334547,Artist,Producto,2000.00
+Hector,Leal,hector.l@empresa.com,1122334548,Embedded Dev,Tecnologia,3150.00
+Sandra,Guan,sandra.g@empresa.com,1122334549,Office Manager,Administracion,2400.00
+Fermin,Pino,fermin.p@empresa.com,1122334550,Hardware Eng,Tecnologia,3300.00
+Marisa,Luz,marisa.l@empresa.com,1122334551,Data Entry,Administracion,1300.00
+Admin,Mal,email-invalido,999999,Falla Formato,IT,500.00
+Juan,Perez,juan.perez@empresa.com,1122334455,Duplicado Interno,Tecnologia,2500.00
+Santino,Pilot,,123,,IT,100.00
