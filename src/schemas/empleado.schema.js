@@ -2,13 +2,13 @@ import { z } from "zod"
 
 // Configuramos el Schema de zod para las validaciones
 const empleadoSchema = z.object({
-    nombre: z.string().trim().min(3), 
-    apellido: z.string().trim().min(3),
-    email: z.email().toLowerCase().trim(), 
-    telefono: z.string().regex(/^\d{10,15}$/),  // Permite solo entre 10 a 15 digitos
-    cargo: z.string().trim().min(2),
-    departamento: z.string().trim().min(2),
-    salario: z.coerce.number().positive() // Transforma el String de salario a numero
+    nombre: z.string().trim().min(3, "El nombre debe tener al menos 3 letras"), 
+    apellido: z.string().trim().min(3, "El apellido debe tener al menos 3 letras"),
+    email: z.email("Formato de email inválido").toLowerCase().trim(), 
+    telefono: z.string().trim().regex(/^\d{10,15}$/, "El teléfono debe tener entre 10 y 15 dígitos"),
+    cargo: z.string().trim().regex(/^(?=(?:.*[a-zA-Z]){2,})[a-zA-Z0-9\s]+$/, "El cargo debe tener al menos 2 letras"),
+    departamento: z.string().trim().regex(/^(?=(?:.*[a-zA-Z]){2,})[a-zA-Z0-9\s]+$/, "El depto debe tener al menos 2 letras"),
+    salario: z.coerce.number().positive("El salario debe ser un número positivo")
 })
 
 export default empleadoSchema   
