@@ -10,74 +10,122 @@ const App = () => {
   const [empleados, setEmpleados] = useState([]);
   const [loading, setLoading] = useState(false);
   const [resumen, setResumen] = useState(null);
-  const [errorConexion, setErrorConexion] = useState(false);
+  const [error, setError] = useState(null)
+  const [exitoRecarga, setExitoRecarga] = useState(false);
 
-  // VARIABLES DE ENTORNO: URLs dinamicas
   const API_URL = import.meta.env.VITE_API_URL;
-  const IMPORT_URL = import.meta.env.VITE_IMPORT_URL;
 
   // Obtiene la lista de empleados desde el backend
-  // esRecargaManual: Si es true, muestra una alerta al finalizar
   const fetchEmpleados = async (esRecargaManual = false) => {
-    setErrorConexion(false) // Reseteamos el estado de error antes de intentar
+    // Resetear errores al iniciar
+    setError(null);
 
     try {
       const response = await fetch(API_URL);
 
+      const tipo = response.headers.get("content-type")
+      let res = {};
+
+      if (tipo && tipo.includes("application/json")) {
+        res = await response.json()
+      }
+
       if (!response.ok) {
-        if (response.status === 429) {
-          throw new Error('Se excedio el limite de peticiones');
-        }
-        throw new Error(`HTTP error: ${response.status}`);
+        const mensajeError = res.error || `Error del servidor (${response.status})`;
+
+        const error = new Error(mensajeError);
+        error.status = response.status;
+        error.tipo = response.status >= 500 ? 'server' : 'client';
+        throw error;
       }
 
-      const result = await response.json();
+      setEmpleados(res.data?.slice(0, 100) || []);
 
-      if (result.success) {
-        setEmpleados(result.data.slice(0, 100));  // Mostramos solo 100 para no exigir cargar tantos empleados
-        if (esRecargaManual) {
-          alert("Datos actualizados con exito");
-        }
+      if (esRecargaManual) {
+        setExitoRecarga(true);
+        setTimeout(() => setExitoRecarga(false), 3000);
       }
-    } catch (error) {
-      console.error("Error al obtener empleados:", error);
-      alert(error.message);
-      setErrorConexion(true); // Activa el banner de error visual
+
+    } catch (err) {
+      if (err.message.includes("fetch") || !err.status) {
+        setError({
+          mensaje: "No se pudo conectar con el servidor",
+          tipo: "conexion",
+          status: 503
+        });
+      } else {
+        setError({
+          mensaje: err.message,
+          tipo: err.tipo,
+          status: err.status
+        });
+      }
     }
   };
 
   useEffect(() => { fetchEmpleados(); }, []); // Carga los empleados al entrar a la pagina
 
-  // Gestiona la carga y envío del archivo CSV al backend
+  // Gestiona la carga y envo del archivo CSV al backend
   const handleImport = async (e) => {
+    setError(null);
+
     const file = e.target.files[0];
     if (!file) return;
-    setLoading(true); // Bloquea la UI para evitar múltiples envíos
+
+    setLoading(true);
     const formData = new FormData();
     formData.append('archivo', file);
 
     try {
-      const response = await fetch(IMPORT_URL, { method: 'POST', body: formData });
-      const result = await response.json();
-      if (response.ok && result.success) {
-        setResumen(result.data); // Guardamos las estadísticas del procesamiento
-        await fetchEmpleados(); // Refrescamos la tabla para mostrar los nuevos registros
-      } else {
-        // Si el servidor tira 400, 429 o 500, mostramos el mensaje que viene del backend
-        alert(`Error: ${result.error || "No se pudo procesar el archivo"}`);
+      const response = await fetch(`${API_URL}/importar`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const tipo = response.headers.get("content-type")
+
+      let res = {}
+
+      if(tipo && tipo.includes("application/json")){
+        res = await response.json()
       }
-    } catch (error) {
-      alert("Error en la conexión con el servidor");
+      if (!response.ok) {
+        const errorMensaje = res.error || `Error del servidor (${response.status})`
+        const error = new Error(errorMensaje);
+        error.status = response.status;
+        error.tipo = response.status >= 500 ? 'server' : 'client';
+        throw error;
+      }
+
+      if (res.success) {
+        setResumen(res.data);
+        await fetchEmpleados(); // Refresca la tabla
+      }
+
+    } catch (err) {
+      if (err.message.includes("fetch") || !err.status) {
+        setError({
+          mensaje: "No se pudo conectar con el servidor",
+          tipo: "conexion",
+          status: 503
+        });
+      } else {
+        setError({
+          mensaje: err.message,
+          tipo: err.tipo,
+          status: err.status
+        });
+      }
     } finally {
-      setLoading(false); // Desbloquea la UI
-      e.target.value = null; // Limpia el input para permitir subir el mismo archivo otra vez
+      setLoading(false);
+      e.target.value = null;
     }
   };
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-slate-900">
 
-      {/* HEADER: Navegacion y acciones principales */}
+      {/* HEADER */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
         <div className="max-w-[1600px] mx-auto px-6 h-18 flex items-center justify-between py-4">
           <div className="flex items-center gap-3">
@@ -117,13 +165,34 @@ const App = () => {
 
       <main className="max-w-[1600px] mx-auto px-6 py-8">
 
-        {/* Banner de error de conexion */}
-        {errorConexion && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700">
-            <AlertCircle size={20} />
-            <p className="text-sm font-medium">No se pudo conectar con el servidor. Verifica tu API.</p>
+        {/* Banner de errores */}
+        {error && (
+          <div className={`mb-6 p-4 border rounded-xl flex items-start gap-3 transition-all ${error.tipo === 'client'
+            ? "bg-amber-50 border-amber-200 text-amber-800"
+            : "bg-red-50 border-red-200 text-red-800"
+            }`}>
+            <AlertCircle className={error.tipo === 'client' ? "text-amber-500" : "text-red-500"} size={20} />
+
+            <div className="flex-1">
+              <p className="text-sm font-bold">
+                {error.tipo === 'client' ? 'Atención' : 'Error del Sistema'}
+              </p>
+              <p className="text-sm opacity-90">{error.mensaje}</p>
+            </div>
+
+            <span className="text-xs font-mono opacity-50 bg-white/50 px-2 py-1 rounded">
+              HTTP {error.status}
+            </span>
           </div>
         )}
+
+        {exitoRecarga && (
+          <div className="fixed bottom-6 right-6 flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded-lg shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-300 z-50">
+            <CheckCircle2 size={18} />
+            <span className="text-sm font-medium">Tabla actualizada</span>
+          </div>
+        )}
+
         {/* INDICADORES KPI */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
           <TarjetaKPI titulo="Filas Procesadas" valor={resumen?.procesados || 0} icono={<FileText />} color="blue" />

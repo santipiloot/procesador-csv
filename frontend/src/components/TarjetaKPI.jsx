@@ -5,10 +5,6 @@ import React from 'react';
 
 const TarjetaKPI = ({ titulo, valor, icono, color }) => {
   
-  /* colorMap: 
-     Evitamos logica compleja en el renderizado usando un objeto que mapea 
-     el nombre del color con sus clases especificas de Tailwind.
-  */
   const colorMap = {
     blue: "text-blue-600 bg-blue-50 border-blue-200",
     green: "text-emerald-600 bg-emerald-50 border-emerald-100",
@@ -18,19 +14,15 @@ const TarjetaKPI = ({ titulo, valor, icono, color }) => {
   };
 
   return (
-    /* Contenedor principal con efecto hover (escala suave) */
+    /* Contenedor principal */
     <div className={`p-5 rounded-2xl border ${colorMap[color]} shadow-sm bg-white flex items-center gap-4 transition-transform hover:scale-[1.02]`}>
       
-      {/* CONTENEDOR DEL ICONO: Usa 'border-inherit' para heredar el color del borde del padre */}
+      {/* Contenedor del icono */}
       <div className={`p-3 rounded-xl bg-white shadow-sm border border-inherit`}>
-        {/* React.cloneElement: 
-           Tecnica para inyectar propiedades (como el tamaño) 
-           al componente de icono que recibimos por props.
-        */}
         {React.cloneElement(icono, { size: 22 })}
       </div>
 
-      {/* TEXTOS DEL INDICADOR */}
+      {/* Textos */}
       <div>
         <p className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-0.5">
           {titulo}

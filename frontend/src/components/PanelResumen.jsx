@@ -7,10 +7,10 @@ import { AlertCircle, Copy, Database } from 'lucide-react';
 
 const PanelResumen = ({ resumen }) => {
     return (
-        /* Contenedor principal: Ocupa 1/3 del ancho en pantallas grandes */
+        /* Contenedor principal */
         <div className="lg:w-1/3 flex flex-col gap-4">
             
-            {/* SECCION DE ERRORES DE VALIDACION (formato incorrecto, campos vacios, etc) */}
+            {/* SECCION DE ERRORES DE VALIDACION */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[280px] overflow-hidden">
                 {/* Cabecera de la caja de errores */}
                 <div className="p-3 border-b border-red-100 bg-red-50/50 flex justify-between items-center">
@@ -51,7 +51,7 @@ const PanelResumen = ({ resumen }) => {
                 </div>
             </div>
 
-            {/* SECCION DE DUPLICADOS INTERNOS (emails repetidos dentro del mismo CSV) */}
+            {/* SECCION DE DUPLICADOS EN EL CSV */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[200px] overflow-hidden">
                 <div className="p-3 border-b border-orange-100 bg-orange-50/50">
                     <h2 className="text-xs font-black text-orange-700 uppercase tracking-widest flex items-center gap-2">
@@ -72,7 +72,7 @@ const PanelResumen = ({ resumen }) => {
                 </div>
             </div>
 
-            {/* SECCION DE COLISIONES CON LA DB (registros que ya existen en el sistema) */}
+            {/* SECCION DE COLISIONES CON LA DB */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[200px] overflow-hidden">
                 <div className="p-3 border-b border-amber-100 bg-amber-50/50">
                     <h2 className="text-xs font-black text-amber-800 uppercase tracking-widest flex items-center gap-2">
