@@ -75,9 +75,10 @@ Para evitar estresar la base de datos con muchas consultas SQL:
 
 ### Backend (Core Focus)
 - **Node.js** & **Express.js**
-- **Multer** (Gestión de archivos)
+- **Multer** & **csv-parse** (Gestión y parsing de archivos)
 - **PostgreSQL** (Persistencia)
 - **Zod** (Validación de esquemas)
+- **Express Rate Limit** & **Cors** (Seguridad y configuración de API)
 - **Vitest** (Unit Testing)
 
 ### Frontend
