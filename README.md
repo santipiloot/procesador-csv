@@ -49,7 +49,7 @@ erDiagram
         text telefono
         text cargo
         text departamento
-        numeric(10,2) salario
+        numeric salario
         timestamp created_at
     }
 ```  
@@ -99,7 +99,7 @@ Para evitar estresar la base de datos con muchas consultas SQL:
 ### Pasos
 1. **Clonar e instalar Backend y Frontend:**
    ```bash
-   git clone <[url-del-repo](https://github.com/santipiloot/procesador-csv)>
+   git clone https://github.com/santipiloot/procesador-csv.git
    cd backend && npm install # Repetir para frontend
    ```
 2. **Configurar Entorno:**
@@ -116,4 +116,4 @@ Para evitar estresar la base de datos con muchas consultas SQL:
 ## 📄 Futuras Mejoras
 - **Manejo de Streams:** Para procesar archivos de gigabytes sin saturar la RAM.
 - **Autenticación JWT:** Protección de endpoints sensibles.
-- **Logs Profesionales:** Implementación de Winston para trazabilidad.
+- **Logs Profesionales:** Implementación de librerias para logs.
