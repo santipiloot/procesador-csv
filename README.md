@@ -17,7 +17,6 @@ Una aplicación web **centrada en el backend** diseñada para la carga, validaci
 
 ## 📸 Vista Previa
 ![Captura Principal de la Aplicación](./frontend/public/preview.png)
-*(Espacio reservado para captura de pantalla de la interfaz)*
 
 ---
 
@@ -43,14 +42,14 @@ He diseñado un esquema simple pero robusto, con restricciones (`constraints`) p
 ```mermaid
 erDiagram
     EMPLEADOS {
-        int id PK
-        string nombre
-        string apellido
-        string email UK "Único para evitar duplicados"
-        string telefono
-        string cargo
-        string departamento
-        decimal salario
+        bigint id PK
+        text nombre
+        text apellido
+        text email UK "Único para evitar duplicados"
+        text telefono
+        text cargo
+        text departamento
+        numeric(10,2) salario
         timestamp created_at
     }
 ```  
@@ -100,7 +99,7 @@ Para evitar estresar la base de datos con muchas consultas SQL:
 ### Pasos
 1. **Clonar e instalar Backend y Frontend:**
    ```bash
-   git clone <url-del-repo>
+   git clone <[url-del-repo](https://github.com/santipiloot/procesador-csv)>
    cd backend && npm install # Repetir para frontend
    ```
 2. **Configurar Entorno:**
