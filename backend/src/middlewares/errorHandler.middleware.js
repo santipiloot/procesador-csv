@@ -25,13 +25,6 @@ const errorHandler = (err, req, res, next) => {
     })
   }
 
-  // Manejador para el Rate Limit (429)
-  if (err.status === 429) {
-    return res.status(429).json({
-      success: false,
-      error: err.message || "Muchas peticiones, por favor intenta más tarde"
-    })
-  }
 
   const status = err.status || 500
   const message = err.message || "Error interno del servidor"
