@@ -86,7 +86,7 @@ const App = () => {
 
       let res = {}
 
-      if(tipo && tipo.includes("application/json")){
+      if (tipo && tipo.includes("application/json")) {
         res = await response.json()
       }
       if (!response.ok) {
@@ -127,34 +127,34 @@ const App = () => {
 
       {/* HEADER */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
-        <div className="max-w-[1600px] mx-auto px-6 h-18 flex items-center justify-between py-4">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between py-3 gap-y-4">
           <div className="flex items-center gap-3">
 
             {/* LOGO Y TITULO */}
-            <div className="bg-sky-600 p-2 rounded-lg"><Database className="text-white" size={24} /></div>
-            <div>
-              <h1 className="text-xl font-bold text-slate-800 leading-none">Procesador de CSV</h1>
-              <p className="text-xs text-slate-500 mt-1 font-medium tracking-wider uppercase">API de importación de empleados</p>
+            <div className="bg-sky-600 p-2 rounded-lg shrink-0"><Database className="text-white" size={24} /></div>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-xl font-bold text-slate-800 leading-tight truncate">Procesador de CSV</h1>
+              <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 font-medium tracking-wider uppercase truncate">API de importación de empleados</p>
             </div>
           </div>
 
           {/* BOTONES DE ACCION */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {/* Boton de recarga */}
-            <button onClick={() => fetchEmpleados(true)} className="cursor-pointer p-2 text-slate-400 hover:text-sky-600 transition-colors active:scale-95" title="Recargar tabla de empleados">
+            <button onClick={() => fetchEmpleados(true)} className="cursor-pointer p-2 text-slate-400 hover:text-sky-600 transition-colors active:scale-95 shrink-0" title="Recargar tabla de empleados">
               <RefreshCw size={20} />
             </button>
 
             {/* Boton de descarga */}
             <a
-              href="/archivo-prueba.csv" download="archivo-prueba.csv" className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95 border border-slate-200" title="Descargar archivo de ejemplo"
+              href="/archivo-prueba.csv" download="archivo-prueba.csv" className="flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95 border border-slate-200 shrink-0" title="Descargar archivo de ejemplo"
             >
               <Download size={18} />
-              <span className="hidden md:inline">Descargar Ejemplo</span>
+              <span className="hidden lg:inline">Descargar Ejemplo</span>
             </a>
-            <label className="cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all shadow-md flex items-center gap-2 active:scale-95" title="Subir archivo">
+            <label className="cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-3 sm:px-5 py-2 rounded-xl font-semibold transition-all shadow-md flex items-center gap-2 active:scale-95 shrink-0" title="Subir archivo">
               {loading ? <RefreshCw className="animate-spin" size={18} /> : <Upload size={18} />}
-              {loading ? 'Procesando...' : 'Cargar Archivo CSV'}
+              <span className="hidden sm:inline">{loading ? 'Procesando...' : 'Cargar Archivo CSV'}</span>
               <input type="file" className="hidden" accept=".csv" onChange={handleImport} disabled={loading} />
             </label>
           </div>
