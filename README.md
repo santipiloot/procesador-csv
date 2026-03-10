@@ -118,3 +118,4 @@ Para evitar estresar la base de datos con muchas consultas SQL:
 - **Manejo de Streams:** Para procesar archivos de gigabytes sin saturar la RAM.
 - **Autenticación JWT:** Protección de endpoints sensibles.
 - **Logs Profesionales:** Implementación de librerias para logs.
+- **Docker:** Contenedorización del proyecto.
