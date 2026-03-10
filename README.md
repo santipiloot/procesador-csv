@@ -9,9 +9,8 @@ Una aplicación web **centrada en el backend** diseñada para la carga, validaci
 
 ---
 
-## 🔗 Enlaces del Proyecto (Deploy)
-- 🌐 **Frontend:** [Próximamente (Vercel)]()
-- ⚙️ **Backend (API):** [Próximamente (Railway)]()
+## 🔗 Enlace del Proyecto (Deploy)
+- 🌐 **Frontend:** [Ver app en Vercel](https://procesador-csv.vercel.app/)
 
 ---
 
