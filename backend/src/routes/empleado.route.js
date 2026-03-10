@@ -7,8 +7,9 @@ const router = Router()
 
 const limiter = rateLimit({
     windowMs: 60 * 60 * 1000,
-    max: 5, 
-    message: {success: false, message: "Demasiados intentos, reintenta en 1 hora"}
+    max: 5,
+    skipResponseBody: true,
+    message: "Demasiados intentos, reintenta en 1 hora"
 })
 
 router.post("/importar", limiter, uploadCsv.single("archivo"), cargarEmpleados)
