@@ -5,6 +5,8 @@ import cors from "cors"
 
 const app = express()
 
+app.set('trust proxy', 1); // Confía en los proxies como el de Railway o Vercel
+
 app.use(express.json())
 app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:5173" }))
 
